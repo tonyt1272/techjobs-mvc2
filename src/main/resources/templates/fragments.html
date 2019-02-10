@@ -33,8 +33,12 @@
 
         <tr th:each="line : ${job}">
 
-            <td th:text="${line.getKey()}"></td><td th:text="${line.getValue()}"></td>
-            <!--<a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a>-->
+            <td th:text="${line.getKey()}"></td>
+            <span th:switch="${line.getKey()}">
+            <td th:case="'name'" th:text="${line.getValue()}"></td>
+
+            <td th:case="*"><a th:href="@{/list/jobs(column=${line.getKey()},value=${line.getValue()})}" th:text="${line.getValue()}"></a></td>
+            </span>
         </tr>
 
     </table>
