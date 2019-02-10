@@ -25,18 +25,42 @@ public class SearchController {
 
    @RequestMapping(value = "results", method = RequestMethod.GET)
    public String results(Model model, @RequestParam String searchType, @RequestParam String searchTerm ){
-       System.out.println(searchType + " " +searchTerm);
-       ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+
+            if(searchType.equals("all")){
+
+                ArrayList<HashMap<String, String>> jobs = JobData.findByValue(searchTerm);
+                System.out.println(jobs);
+                Integer total=jobs.size();
+
+                if(jobs.size()<1){
+                    total=0 ;
+                }
+                model.addAttribute("jobs", jobs);
+                model.addAttribute("total",Integer.toString(total));
+                model.addAttribute("columns", ListController.columnChoices);
+                return "search";
+            }
+
+
+
+            else{
+           ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
+           System.out.println(jobs);
+           Integer total=jobs.size();
+
+           if(jobs.size()<1){
+               total=0 ;
+           }
+           model.addAttribute("jobs", jobs);
+           model.addAttribute("total",Integer.toString(total));
+           model.addAttribute("columns", ListController.columnChoices);
+           return "search";
+        }
+           //
+
        //model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
-       System.out.println(jobs);
-       Integer total=jobs.size();
-       if(jobs.size()<1){
-           total=0 ;
-       }
-       model.addAttribute("jobs", jobs);
-       model.addAttribute("total",Integer.toString(total));
-       model.addAttribute("columns", ListController.columnChoices);
-       return "search";
+
+       //return "search";
    }
 
 
