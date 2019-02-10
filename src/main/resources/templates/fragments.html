@@ -34,7 +34,7 @@
         <tr th:each="line : ${job}">
 
             <td th:text="${line.getKey()}"></td><td th:text="${line.getValue()}"></td>
-
+            <!--<a th:href="@{/list/jobs(column=${column},value=${item})}" th:text="${item}"></a>-->
         </tr>
 
     </table>
