@@ -35,6 +35,7 @@ public class SearchController {
                 if(jobs.size()<1){
                     total=0 ;
                 }
+                model.addAttribute("previousSearch",searchTerm);
                 model.addAttribute("jobs", jobs);
                 model.addAttribute("total",Integer.toString(total));
                 model.addAttribute("columns", ListController.columnChoices);
@@ -51,6 +52,7 @@ public class SearchController {
            if(jobs.size()<1){
                total=0 ;
            }
+           model.addAttribute("previousSearch",searchTerm);
            model.addAttribute("jobs", jobs);
            model.addAttribute("total",Integer.toString(total));
            model.addAttribute("columns", ListController.columnChoices);
