@@ -29,8 +29,12 @@ public class SearchController {
        ArrayList<HashMap<String, String>> jobs = JobData.findByColumnAndValue(searchType, searchTerm);
        //model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
        System.out.println(jobs);
+       Integer total=jobs.size();
+       if(jobs.size()<1){
+           total=0 ;
+       }
        model.addAttribute("jobs", jobs);
-       model.addAttribute("total",Integer.toString(jobs.size()));
+       model.addAttribute("total",Integer.toString(total));
        model.addAttribute("columns", ListController.columnChoices);
        return "search";
    }

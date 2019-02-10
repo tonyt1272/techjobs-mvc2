@@ -36,7 +36,7 @@
 
     <hr />
 
-    <p  th:unless="${jobs} and ${jobs.size()}">no results</p>
+    <!--<p  th:unless="${jobs} and ${jobs.size()}">no results</p>-->
     <h3 th:text="${total}+ ' Result(s)'"> </h3>
     <table class="job-listing" th:each="job : ${jobs}">
 
