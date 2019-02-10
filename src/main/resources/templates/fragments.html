@@ -28,7 +28,10 @@
     </div>
 
     <div th:fragment="display-results">
-    <h3  th:text="${total}+ ' Result(s)'"> </h3>
+        <span th:switch="${total}">
+            <h3 th:case="null"></h3>
+    <h3 th:case=* th:text="${total}+ ' Result(s)'"> </h3>
+            </span>
     <table class="job-listing" th:each="job : ${jobs}">
 
         <tr th:each="line : ${job}">
@@ -37,7 +40,8 @@
             <span th:switch="${line.getKey()}">
             <td th:case="'name'" th:text="${line.getValue()}"></td>
 
-            <td th:case="*"><a th:href="@{/list/jobs(column=${line.getKey()},value=${line.getValue()})}" th:text="${line.getValue()}"></a></td>
+            <td th:case="*"><a th:href="@{/list/jobs(column=${line.getKey()},value=${line.getValue()})}"
+                               th:text="${line.getValue()}"></a></td>
             </span>
         </tr>
 
